@@ -1,0 +1,191 @@
+/* Driver Dashboard Background Animation */
+.driver-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e8eef7 100%);
+    overflow: hidden;
+}
+
+/* Road Pattern */
+.road-pattern {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        linear-gradient(90deg, transparent 96%, rgba(74, 144, 226, 0.1) 96%),
+        linear-gradient(rgba(74, 144, 226, 0.1) 2px, transparent 2px);
+    background-size: 60px 30px;
+    animation: roadMove 20s linear infinite;
+    transform: perspective(500px) rotateX(60deg);
+    transform-origin: center bottom;
+}
+
+/* Navigation Elements */
+.nav-marker {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    border: 2px solid rgba(74, 144, 226, 0.2);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+}
+
+.nav-marker::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    border: 2px solid rgba(74, 144, 226, 0.1);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    animation: ripple 2s infinite;
+}
+
+.marker1 { top: 20%; left: 15%; animation-delay: 0s; }
+.marker2 { top: 40%; left: 85%; animation-delay: -0.5s; }
+.marker3 { top: 70%; left: 35%; animation-delay: -1s; }
+
+/* Route Lines */
+.route-line {
+    position: absolute;
+    height: 2px;
+    background: linear-gradient(90deg, 
+        rgba(74, 144, 226, 0), 
+        rgba(74, 144, 226, 0.2) 50%, 
+        rgba(74, 144, 226, 0));
+    animation: routeFlow 4s linear infinite;
+}
+
+.route1 {
+    width: 200px;
+    top: 25%;
+    left: 10%;
+    transform: rotate(30deg);
+    animation-delay: 0s;
+}
+
+.route2 {
+    width: 300px;
+    top: 45%;
+    right: 10%;
+    transform: rotate(-45deg);
+    animation-delay: -2s;
+}
+
+.route3 {
+    width: 250px;
+    bottom: 25%;
+    left: 30%;
+    transform: rotate(15deg);
+    animation-delay: -1s;
+}
+
+/* Compass Points */
+.compass-point {
+    position: absolute;
+    font-size: 12px;
+    color: rgba(74, 144, 226, 0.2);
+    font-family: Arial, sans-serif;
+    animation: fadeInOut 3s infinite;
+}
+
+.point-n { top: 5%; left: 50%; transform: translateX(-50%); }
+.point-s { bottom: 5%; left: 50%; transform: translateX(-50%); }
+.point-e { top: 50%; right: 5%; transform: translateY(-50%); }
+.point-w { top: 50%; left: 5%; transform: translateY(-50%); }
+
+/* Animations */
+@keyframes roadMove {
+    0% {
+        background-position: 0 0;
+    }
+    100% {
+        background-position: 60px 30px;
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 0.2;
+    }
+    50% {
+        transform: scale(1.2);
+        opacity: 0.5;
+    }
+}
+
+@keyframes ripple {
+    0% {
+        width: 20px;
+        height: 20px;
+        opacity: 1;
+    }
+    100% {
+        width: 40px;
+        height: 40px;
+        opacity: 0;
+    }
+}
+
+@keyframes routeFlow {
+    0% {
+        opacity: 0;
+        transform: translateX(-20px) rotate(var(--rotation));
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        transform: translateX(20px) rotate(var(--rotation));
+    }
+}
+
+@keyframes fadeInOut {
+    0%, 100% { opacity: 0.1; }
+    50% { opacity: 0.3; }
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .road-pattern {
+        background-size: 40px 20px;
+    }
+    
+    .route-line {
+        width: 150px;
+    }
+}
+
+/* Intersection Points */
+.intersection {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    border: 2px solid rgba(74, 144, 226, 0.1);
+    border-radius: 4px;
+    transform: rotate(45deg);
+    animation: intersectionPulse 3s infinite;
+}
+
+.intersection1 { top: 30%; left: 20%; }
+.intersection2 { top: 60%; right: 25%; }
+.intersection3 { bottom: 20%; left: 40%; }
+
+@keyframes intersectionPulse {
+    0%, 100% {
+        border-color: rgba(74, 144, 226, 0.1);
+        transform: rotate(45deg) scale(1);
+    }
+    50% {
+        border-color: rgba(74, 144, 226, 0.2);
+        transform: rotate(45deg) scale(1.1);
+    }
+}
