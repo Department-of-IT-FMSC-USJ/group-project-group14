@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Oct 22, 2025 at 06:46 AM
+-- Generation Time: Oct 22, 2025 at 07:10 AM
 -- Server version: 9.1.0
 -- PHP Version: 8.3.14
 
@@ -43,12 +43,7 @@ CREATE TABLE IF NOT EXISTS `driver` (
 --
 
 INSERT INTO `driver` (`driver_ID`, `name`, `phone_number`, `email`, `password`) VALUES
-(1, 'Dhanushka sahan', '0762542373', 'dhanushkasahan550@gmail.com', '$2y$10$D.NJOKEpeIrd/'),
-(2, 'rajith', '0762542373', 'test@gmail.com', '$2y$10$gM6Jbko3R2w4U'),
-(3, 'test', '0762542377', 'test1@gmail.com', 'test'),
-(4, 'sahan', '0762645376', 'sahan@gmail.com', 'Sahan373#'),
-(5, 'Induwara Lakindu', '0724943352', 'induwaralakindu09@gmail.com', '123'),
-(6, 'rajith', '0762213413', 'rajithmiyushan2@gmail.com', '1234');
+(2, 'rajith', '0762542373', 'test@gmail.com', '$2y$10$gM6Jbko3R2w4U');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
