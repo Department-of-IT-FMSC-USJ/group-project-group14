@@ -1,0 +1,253 @@
+/* Common styles for animations */
+.animation-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+}
+
+/* Login Page Animation - Parking Lines */
+.parking-lines-animation {
+    background: linear-gradient(45deg, #1a237e, #283593);
+}
+
+.parking-line {
+    position: absolute;
+    height: 100px;
+    width: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    transform: skewX(-45deg);
+}
+
+@keyframes moveLine {
+    0% { transform: translateX(-100%) skewX(-45deg); }
+    100% { transform: translateX(1000%) skewX(-45deg); }
+}
+
+/* Driver Dashboard Animation - Moving Cars */
+.road-animation {
+    background: #1e1e1e;
+}
+
+.road-line {
+    position: absolute;
+    width: 100px;
+    height: 10px;
+    background: rgba(255, 255, 255, 0.3);
+    margin: 20px 0;
+}
+
+.car-icon {
+    position: absolute;
+    width: 60px;
+    height: 30px;
+    background: #2196F3;
+    border-radius: 8px;
+}
+
+.car-icon::before {
+    content: '';
+    position: absolute;
+    top: -8px;
+    left: 10px;
+    width: 35px;
+    height: 15px;
+    background: #1976D2;
+    border-radius: 5px;
+}
+
+.car-icon::after {
+    content: '';
+    position: absolute;
+    bottom: 2px;
+    left: 10px;
+    width: 12px;
+    height: 12px;
+    background: #333;
+    border-radius: 50%;
+    box-shadow: 28px 0 0 #333;
+}
+
+@keyframes moveCar {
+    0% { transform: translateX(-100px); }
+    100% { transform: translateX(calc(100vw + 100px)); }
+}
+
+/* Provider Dashboard Animation - Parking Grid */
+.parking-grid-animation {
+    background: #263238;
+}
+
+.grid-cell {
+    position: absolute;
+    width: 100px;
+    height: 150px;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.grid-cell::before {
+    content: 'P';
+    color: rgba(255, 255, 255, 0.2);
+    font-size: 24px;
+    font-weight: bold;
+}
+
+@keyframes gridPulse {
+    0% { border-color: rgba(255, 255, 255, 0.1); }
+    50% { border-color: rgba(33, 150, 243, 0.3); }
+    100% { border-color: rgba(255, 255, 255, 0.1); }
+}
+
+/* My Bookings Animation - Clock and Calendar */
+.booking-time-animation {
+    background: linear-gradient(135deg, #303f9f, #1976D2);
+}
+
+.clock {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    border: 3px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+}
+
+.clock-hand {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.3);
+    transform-origin: bottom center;
+}
+
+.hour-hand {
+    width: 4px;
+    height: 20px;
+    left: 38px;
+    top: 20px;
+}
+
+.minute-hand {
+    width: 2px;
+    height: 30px;
+    left: 39px;
+    top: 10px;
+}
+
+@keyframes clockRotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Initialize animations with JavaScript */
+.animated-line {
+    animation: moveLine 8s linear infinite;
+}
+
+.animated-car {
+    animation: moveCar 15s linear infinite;
+}
+
+.animated-grid {
+    animation: gridPulse 3s ease-in-out infinite;
+}
+
+.animated-hour {
+    animation: clockRotate 60s linear infinite;
+}
+
+.animated-minute {
+    animation: clockRotate 5s linear infinite;
+}
+
+/* Adjust content containers */
+.dashboard-container, .form-container, .main-container {
+    background: rgba(255, 255, 255, 0.95) !important;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.dashboard-nav {
+    background: rgba(33, 150, 243, 0.95) !important;
+    backdrop-filter: blur(10px);
+}
+
+.parking-space-card {
+    background: rgba(255, 255, 255, 0.95) !important;
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.modal-content {
+    background: rgba(255, 255, 255, 0.95) !important;
+    backdrop-filter: blur(10px);
+}
+
+/* Animation Initialization Script */
+function initializeAnimations() {
+    // Login page lines
+    if (document.querySelector('.parking-lines-animation')) {
+        for (let i = 0; i < 10; i++) {
+            const line = document.createElement('div');
+            line.className = 'parking-line animated-line';
+            line.style.left = `${i * 200}px`;
+            line.style.animationDelay = `${i * 0.5}s`;
+            document.querySelector('.parking-lines-animation').appendChild(line);
+        }
+    }
+
+    // Driver dashboard cars
+    if (document.querySelector('.road-animation')) {
+        for (let i = 0; i < 5; i++) {
+            const car = document.createElement('div');
+            car.className = 'car-icon animated-car';
+            car.style.top = `${50 + i * 100}px`;
+            car.style.animationDelay = `${i * 3}s`;
+            document.querySelector('.road-animation').appendChild(car);
+
+            const line = document.createElement('div');
+            line.className = 'road-line';
+            line.style.top = `${100 + i * 100}px`;
+            document.querySelector('.road-animation').appendChild(line);
+        }
+    }
+
+    // Provider dashboard grid
+    if (document.querySelector('.parking-grid-animation')) {
+        for (let i = 0; i < 5; i++) {
+            for (let j = 0; j < 3; j++) {
+                const cell = document.createElement('div');
+                cell.className = 'grid-cell animated-grid';
+                cell.style.left = `${j * 120 + 50}px`;
+                cell.style.top = `${i * 170 + 50}px`;
+                cell.style.animationDelay = `${(i + j) * 0.2}s`;
+                document.querySelector('.parking-grid-animation').appendChild(cell);
+            }
+        }
+    }
+
+    // My bookings clocks
+    if (document.querySelector('.booking-time-animation')) {
+        for (let i = 0; i < 3; i++) {
+            const clock = document.createElement('div');
+            clock.className = 'clock';
+            clock.style.left = `${150 + i * 200}px`;
+            clock.style.top = `${100 + (i % 2) * 150}px`;
+
+            const hourHand = document.createElement('div');
+            hourHand.className = 'clock-hand hour-hand animated-hour';
+            hourHand.style.animationDelay = `${-i * 5}s`;
+
+            const minuteHand = document.createElement('div');
+            minuteHand.className = 'clock-hand minute-hand animated-minute';
+            minuteHand.style.animationDelay = `${-i * 0.5}s`;
+
+            clock.appendChild(hourHand);
+            clock.appendChild(minuteHand);
+            document.querySelector('.booking-time-animation').appendChild(clock);
+        }
+    }
+}
